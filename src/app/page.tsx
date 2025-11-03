@@ -524,9 +524,10 @@ const HRISLanding = () => {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-gradient-to-br from-[#7CA5BF] to-white rounded-lg flex items-center justify-center">
-                  <span className="text-[#1E3A5F] font-bold text-xl">HR</span>
+                <div className="flex items-center space-x-2">
+                  <img src="/logo2.png" alt="HRIS logo" className="w-15 h-10 rounded-lg object-cover" />
                 </div>
+              </div>
                 <span className="text-xl font-bold">HRIS Pro</span>
               </div>
               <p className="text-white/70">Platform HRIS terdepan untuk perusahaan modern</p>
