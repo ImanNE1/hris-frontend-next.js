@@ -1,0 +1,98 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import AnimatedBubbles from '@/components/auth/AnimatedBubbles';
+import { Button } from '@/components/ui/button';
+import { Shield, User } from 'lucide-react'; 
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
+
+// Komponen kartu yang bisa digunakan kembali untuk setiap peran
+const RoleCard = ({ 
+    icon: Icon, 
+    title, 
+    description, 
+    buttonText, 
+    onClick,
+    className
+}: { 
+    icon: React.ElementType, 
+    title: string, 
+    description: string, 
+    buttonText: string, 
+    onClick: () => void,
+    className?: string
+}) => {
+    return (
+        <Card 
+            className={cn(
+                "w-full max-w-sm bg-white/10 backdrop-blur-lg border-white/20 text-white text-center transform transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:bg-white/20 cursor-pointer",
+                className
+            )}
+            onClick={onClick}
+        >
+            <CardHeader className="items-center">
+                <div className="p-4 bg-white/20 rounded-full mb-4">
+                    <Icon className="h-10 w-10" />
+                </div>
+                <CardTitle className="text-2xl font-bold">{title}</CardTitle>
+                <CardDescription className="text-white/80">{description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Button 
+                    className="w-full font-bold py-6 text-lg"
+                >
+                    {buttonText}
+                </Button>
+            </CardContent>
+        </Card>
+    );
+}
+
+
+export default function ChooseRolePage() {
+    const router = useRouter();
+
+    return (
+        <main className="relative flex items-center justify-center min-h-screen bg-[#3B82F6] overflow-hidden p-4">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6] to-[#1E40AF] -z-20" />
+            <AnimatedBubbles />
+
+            <div className="flex flex-col items-center text-center text-white">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Choose Your Role</h1>
+                <p className="text-white/80 mb-12 max-w-md">Select whether you are setting up a new workspace for your team or joining an existing one.</p>
+                
+                <div className="flex flex-col md:flex-row gap-8">
+                    <RoleCard
+                        icon={Shield}
+                        title="Super Admin"
+                        description="Create and manage a new company workspace for your team."
+                        buttonText="I'm a Super Admin"
+                        onClick={() => router.push('/auth/create-company')}
+                        className="group"
+                    />
+                    {/* Kartu untuk Admin */}
+                    <RoleCard
+                        icon={Shield}
+                        title="Admin"
+                        description="Create and manage a new company workspace for your team."
+                        buttonText="I'm an Admin"
+                        onClick={() => router.push('/auth/create-company')}
+                        className="group"
+                    />
+
+                    {/* Kartu untuk Employee */}
+                     <RoleCard
+                        icon={User}
+                        title="Employee"
+                        description="Join an existing company workspace you've been invited to."
+                        buttonText="I'm an Employee"
+                        onClick={() => router.push('/auth/join-company')}
+                        className="group"
+                    />
+                </div>
+            </div>
+        </main>
+    );
+}
+
