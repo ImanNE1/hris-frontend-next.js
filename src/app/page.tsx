@@ -557,7 +557,7 @@ const HRISLanding = () => {
             </div>
           </div>
           <div className="border-t border-white/20 pt-8 text-center text-white/70">
-            <p>© 2025 HRIS Pro. All rights reserved.</p>
+            <p>© 2025 Team 5 cmLabs. All rights reserved.</p>
           </div>
         </div>
       </footer>
